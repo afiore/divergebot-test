@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "running divergebot"
-      - uses: afiore/divergebot@v0.3.0
+      - uses: afiore/divergebot@v0.4.0
         with:
           slack_webhook_url: ${{ github.event.inputs.slack_webhook_url }}
           branches_to_compare: '["main...release/other"]'
