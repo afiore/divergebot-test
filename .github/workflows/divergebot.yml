@@ -7,26 +7,15 @@ on:
       slack_webhook_url: # id of input
         description: "Slack webhook url for outgoing notifications"
         required: true
-      branches_to_compare:
-        description: 'A json-encoded list of branches to compare. Format: ["release/4.1...master", "release/3.3...master"])'
-        required: true
-      github_owner:
-        description: "The github organisation/owner"
-        required: true
-        #default
-      github_repo:
-        description: "The github repository"
-        required: true
 
 jobs:
   divergebot:
     runs-on: ubuntu-latest
     steps:
       - run: echo "running divergebot"
-      - uses: afiore/divergebot@v0.2.0
+      - uses: afiore/divergebot@v0.3.0
         with:
           slack_webhook_url: ${{ github.event.inputs.slack_webhook_url }}
-          branches_to_compare: ${{  github.event.inputs.branches_to_compare }}
+          branches_to_compare: '["main...release/other"]'
           github_api_token: ${{ secrets.GITHUB_TOKEN }}
-          github_owner: ${{ github.event.inputs.github_owner }}
-          github_repo: ${{  github.event.inputs.github_repo }}
+          github_owner_repo: ${{ env.GITHUB_REPOSITORY }}
