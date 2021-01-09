@@ -18,4 +18,4 @@ jobs:
           slack_webhook_url: ${{ github.event.inputs.slack_webhook_url }}
           branches_to_compare: '["release/other...main"]'
           github_api_token: ${{ secrets.GITHUB_TOKEN }}
-          github_owner_repo: ${{ env.GITHUB_REPOSITORY }}
+          github_owner_repo: ${{ github.repository }}
