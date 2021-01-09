@@ -25,7 +25,7 @@ jobs:
       - run: echo "running divergebot"
       - uses: afiore/divergebot@v0.1.0
         with:
-          slack_webhook_url: ${{ github.event.inputs.slack_webhook_urlname }}
+          slack_webhook_url: ${{ github.event.inputs.slack_webhook_url }}
           branches_to_compare: ${{  github.event.inputs.branches_to_compare }}
           github_api_token: ${{ secrets.GITHUB_TOKEN }}
           github_owner: ${{ github.event.inputs.github_owner }}
