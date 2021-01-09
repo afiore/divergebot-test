@@ -1,0 +1,37 @@
+name: Run Divergebot
+on:
+#  schedule: 
+#    - cron: */5 * * * *
+  workflow_dispatch:
+    inputs:
+      slack_webhook_url: # id of input
+        description: "Slack webhook url for outgoing notifications"
+        required: true
+      branches_to_compare:
+        description: 'A json-encoded list of branches to compare. Format: ["release/4.1...master", "release/3.3...master"])'
+        required: true
+      github_api_token:
+        description: "The github API token"
+        required: true
+        #default
+      github_owner:
+        description: "The github organisation/owner"
+        required: true
+        #default
+      github_repo:
+        description: "The github repository"
+        required: true
+
+jobs:
+  divergebot:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "running divergebot"
+      - uses: afiore/divergebot
+        with: 
+          slack_webhook_url: ${{ github.event.inputs.slack_webhook_urlname }}
+          branches_to_compare: ${{  github.event.inputs.branches_to_compare }}
+          github_api_token: ${{ secrets.GITHUB_TOKEN }}
+          github_owner: ${{ github.event.inputs.owner }}
+          github_repo: ${{  github.event.inputs.repo }}
+
