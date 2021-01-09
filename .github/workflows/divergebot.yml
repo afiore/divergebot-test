@@ -10,10 +10,6 @@ on:
       branches_to_compare:
         description: 'A json-encoded list of branches to compare. Format: ["release/4.1...master", "release/3.3...master"])'
         required: true
-      github_api_token:
-        description: "The github API token"
-        required: true
-        #default
       github_owner:
         description: "The github organisation/owner"
         required: true
